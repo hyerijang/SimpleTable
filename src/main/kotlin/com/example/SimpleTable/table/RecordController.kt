@@ -26,4 +26,10 @@ class RecordController(private val recordService: RecordService) {
         return records.map { recordService.saveRecord(it) }
 
     }
+
+    @PutMapping("/{id}")
+    fun updateRecord(@PathVariable id: String, @RequestBody record: Record): Record {
+        require(id == record.id) { "ID in path must match ID in request body" }
+        return recordService.saveRecord(record)
+    }
 }
