@@ -10,5 +10,6 @@ data class Record(
     val serviceType: String,
     val title: String,
     val createdAt: LocalDateTime = LocalDateTime.now(),
-    val updatedAt: LocalDateTime = LocalDateTime.now()
+    val updatedAt: LocalDateTime = LocalDateTime.now(),
+    var sortOrder: Int = 0,
 )

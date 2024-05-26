@@ -15,9 +15,9 @@ class RecordController(private val recordService: RecordService) {
     @GetMapping
     fun getAllRecords(@RequestParam(required = false) serviceType: String?): List<Record> {
         return if (serviceType.isNullOrEmpty()) {
-            recordService.getAllRecords()
+            recordService.getAllRecordsOrderBySortOrderAsc()
         } else {
-            recordService.getRecordsByServiceType(serviceType)
+            recordService.findByServiceTypeOrderBySortOrderAsc(serviceType)
         }
     }
     @PostMapping
