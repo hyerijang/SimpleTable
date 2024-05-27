@@ -9,7 +9,7 @@ class RecordService(private val recordRepository: RecordRepository) {
     fun findByServiceTypeOrderBySortOrderAsc(serviceType: String): List<Record> =
         recordRepository.findByServiceTypeOrderBySortOrderAsc(serviceType)
 
-    fun getAllRecordsOrderBySortOrderAsc(): List<Record> = recordRepository.findAllOrderBySortOrderAsc()
+    fun getAllRecordsOrderBySortOrderAsc(): List<Record> = recordRepository.findAllByOrderBySortOrderAsc()
 
 }
 
