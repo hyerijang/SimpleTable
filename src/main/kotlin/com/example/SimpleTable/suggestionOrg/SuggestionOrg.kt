@@ -5,11 +5,10 @@ import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 
 @Document(collection = "records")
-data class Record(
+data class SuggestionOrg(
     @Id val id: String? = null,
-    val serviceType: String,
-    val title: String,
-    val createdAt: LocalDateTime = LocalDateTime.now(),
-    val updatedAt: LocalDateTime = LocalDateTime.now(),
-    var sortOrder: Int = 0,
+    val srcServiceType: String?,
+    val createdAt: LocalDateTime? = LocalDateTime.now(),
+    val updatedAt: LocalDateTime? = LocalDateTime.now(),
+    var displayOrder: Long? = 0,
 )
