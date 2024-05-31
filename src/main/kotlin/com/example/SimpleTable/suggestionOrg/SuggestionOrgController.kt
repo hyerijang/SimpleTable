@@ -14,22 +14,21 @@ class SuggestionOrgController(private val suggestionOrgService: SuggestionOrgsSe
         return if (srcServiceType.isNullOrEmpty()) {
             suggestionOrgService.getAllByOrderByDisplayOrderDesc()
         } else {
-            suggestionOrgService.findAllByOrderByDisplayOrderDesc(srcServiceType)
+            suggestionOrgService.findAllByOrderByDisplayOrderDesc(srcServiceType!!)
         }
     }
 
     @PostMapping
-    fun saveRecords(@RequestBody suggestionOrgList: List<SuggestionOrg>): ResponseEntity<List<SuggestionOrg>> {
+    fun saveSuggestionOrg(@RequestBody suggestionOrgList: List<SuggestionOrg>): ResponseEntity<List<SuggestionOrg>> {
 
         val li: List<SuggestionOrg> = suggestionOrgList.map { suggestionOrgService.saveRecord(it) }
         return ResponseEntity(li,HttpStatus.CREATED)
-//        return ResponseEntity(HttpStatus.BAD_REQUEST)
-
     }
 
     @PutMapping("/{id}")
-    fun updateRecord(@PathVariable id: String, @RequestBody suggestionOrg: SuggestionOrg): SuggestionOrg {
-        require(id == suggestionOrg.id) { "ID in path must match ID in request body" }
+    fun updateSuggestionOrg(@PathVariable id: String, @RequestBody suggestionOrg: SuggestionOrg): SuggestionOrg {
         return suggestionOrgService.saveRecord(suggestionOrg)
     }
+
+
 }
