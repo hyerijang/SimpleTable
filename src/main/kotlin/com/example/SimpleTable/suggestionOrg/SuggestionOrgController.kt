@@ -1,5 +1,7 @@
 package com.example.SimpleTable.table
 
+import org.springframework.data.domain.Page
+import org.springframework.data.domain.PageRequest
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
@@ -22,7 +24,7 @@ class SuggestionOrgController(private val suggestionOrgService: SuggestionOrgsSe
     fun saveSuggestionOrg(@RequestBody suggestionOrgList: List<SuggestionOrg>): ResponseEntity<List<SuggestionOrg>> {
 
         val li: List<SuggestionOrg> = suggestionOrgList.map { suggestionOrgService.saveRecord(it) }
-        return ResponseEntity(li,HttpStatus.CREATED)
+        return ResponseEntity(li, HttpStatus.CREATED)
     }
 
     @PutMapping("/{id}")
@@ -30,5 +32,14 @@ class SuggestionOrgController(private val suggestionOrgService: SuggestionOrgsSe
         return suggestionOrgService.saveRecord(suggestionOrg)
     }
 
+
+//    @GetMapping("/null_last")
+//    fun nullLast(
+//        @RequestParam(required = false, defaultValue = "0") page: Int,
+//        @RequestParam(required = false, defaultValue = "10") size: Int
+//    ): Page<SuggestionOrg> {
+//        val pageable: PageRequest = PageRequest.of(page, size)
+//        return suggestionOrgService.nullLast(pageable)
+//    }
 
 }
