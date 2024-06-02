@@ -33,13 +33,13 @@ class SuggestionOrgController(private val suggestionOrgService: SuggestionOrgsSe
     }
 
 
-//    @GetMapping("/null_last")
-//    fun nullLast(
-//        @RequestParam(required = false, defaultValue = "0") page: Int,
-//        @RequestParam(required = false, defaultValue = "10") size: Int
-//    ): Page<SuggestionOrg> {
-//        val pageable: PageRequest = PageRequest.of(page, size)
-//        return suggestionOrgService.nullLast(pageable)
-//    }
+    @GetMapping("/null_last")
+    fun nullLast(
+        @RequestParam(required = false, defaultValue = "0") page: Int,
+        @RequestParam(required = false, defaultValue = "10") size: Int
+    ): Page<SuggestionOrg> {
+        val pageable: PageRequest = PageRequest.of(page, size)
+        return suggestionOrgService.findAllByOrderByDisplayOrderAscWithNullsLast(pageable)
+    }
 
 }

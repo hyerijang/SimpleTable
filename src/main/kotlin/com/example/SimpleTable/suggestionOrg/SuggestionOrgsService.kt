@@ -1,5 +1,6 @@
 package com.example.SimpleTable.table
 
+import com.example.SimpleTable.suggestionOrg.repository.SuggestionOrgMongoRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
@@ -20,6 +21,10 @@ class SuggestionOrgsService(private val suggestionOrgMongoRepository: Suggestion
     fun getAllByOrderByDisplayOrderDesc(): List<SuggestionOrg> =
         suggestionOrgMongoRepository.findAllByOrderByDisplayOrderDesc()
 
+    fun findAllByOrderByDisplayOrderAscWithNullsLast(pagable: Pageable): Page<SuggestionOrg>
+        {
+            return suggestionOrgMongoRepository.findAllByOrderByDisplayOrderAscWithNullsLast(pagable)
+        }
 
 }
 

@@ -1,10 +1,9 @@
-package com.example.SimpleTable.table
+package com.example.SimpleTable.suggestionOrg.repository
 
-import org.springframework.data.domain.Page
-import org.springframework.data.domain.Pageable
+import com.example.SimpleTable.table.SuggestionOrg
 import org.springframework.data.mongodb.repository.MongoRepository
 
-interface SuggestionOrgMongoRepository : MongoRepository<SuggestionOrg, String> {
+interface SuggestionOrgMongoRepository : MongoRepository<SuggestionOrg, String>, CustomSuggestionOrgRepository {
     fun findBySrcServiceType(srcServiceType: String): List<SuggestionOrg>
     fun findBySrcServiceTypeOrderByDisplayOrderDesc(srcServiceType: String): List<SuggestionOrg>
     fun findAllByOrderByDisplayOrderDesc(): List<SuggestionOrg>
