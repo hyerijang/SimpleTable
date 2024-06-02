@@ -4,7 +4,7 @@ import org.springframework.data.annotation.Id
 import org.springframework.data.mongodb.core.mapping.Document
 import java.time.LocalDateTime
 
-@Document(collection = "suggestion_org")
+@Document(collection = "suggestionOrg")
 data class SuggestionOrg(
     @Id val id: String? = null,
     val srcServiceType: String?,
