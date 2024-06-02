@@ -23,7 +23,8 @@ class CustomSuggestionOrgRepositoryImpl(
 
         val sortStage = Aggregation.sort(
             org.springframework.data.domain.Sort.by(
-                org.springframework.data.domain.Sort.Order.asc("sortOrder")
+                org.springframework.data.domain.Sort.Order.asc("sortOrder"),
+                org.springframework.data.domain.Sort.Order.desc("createdAt") // 순서가 동일한 경우, 최신데이터가 가장 앞으로
             )
         )
         val skipStage = Aggregation.skip((pageable.pageNumber * pageable.pageSize).toLong())
