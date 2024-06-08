@@ -8,5 +8,11 @@ interface SuggestionOrgMongoRepository : MongoRepository<SuggestionOrg, String>,
     fun findBySrcServiceTypeOrderByDisplayOrderDesc(srcServiceType: String): List<SuggestionOrg>
     fun findAllByOrderByDisplayOrderDesc(): List<SuggestionOrg>
 
+    /**
+     * api 용 (1)
+     */
+    fun findAllByDisplayOrderIsNotNull(): List<SuggestionOrg>
+    fun findAllByDisplayOrderIsNull(): List<SuggestionOrg>
+
 }
 
