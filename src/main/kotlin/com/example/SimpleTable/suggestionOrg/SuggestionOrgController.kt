@@ -22,14 +22,13 @@ class SuggestionOrgController(private val suggestionOrgService: SuggestionOrgsSe
 
     @PostMapping
     fun saveSuggestionOrg(@RequestBody suggestionOrgList: List<SuggestionOrg>): ResponseEntity<List<SuggestionOrg>> {
-
-        val li: List<SuggestionOrg> = suggestionOrgList.map { suggestionOrgService.saveRecord(it) }
+        val li: List<SuggestionOrg> = suggestionOrgService.saveAll(suggestionOrgList)
         return ResponseEntity(li, HttpStatus.CREATED)
     }
 
     @PutMapping("/{id}")
     fun updateSuggestionOrg(@PathVariable id: String, @RequestBody suggestionOrg: SuggestionOrg): SuggestionOrg {
-        return suggestionOrgService.saveRecord(suggestionOrg)
+        return suggestionOrgService.save(suggestionOrg)
     }
 
 

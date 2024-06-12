@@ -8,8 +8,24 @@ import org.springframework.stereotype.Service
 @Service
 class SuggestionOrgsService(private val suggestionOrgMongoRepository: SuggestionOrgMongoRepository) {
     fun getAllRecords(): List<SuggestionOrg> = suggestionOrgMongoRepository.findAll()
-    fun saveRecord(suggestionOrg: SuggestionOrg): SuggestionOrg {
+
+
+    fun save(suggestionOrg: SuggestionOrg): SuggestionOrg {
         return suggestionOrgMongoRepository.save(suggestionOrg)
+    }
+
+    fun saveAll(suggestionOrgs: List<SuggestionOrg>): List<SuggestionOrg> {
+        suggestionOrgs.forEach { suggestionOrg ->
+            val duplicates = suggestionOrgMongoRepository.findByOrgCodeAndSrcServiceType(
+                suggestionOrg.orgCode, suggestionOrg.srcServiceType
+            )
+            if (duplicates.isNotEmpty()) {
+                throw DuplicateSuggestionOrgException("서비스 유형이 ${suggestionOrg.srcServiceType}인 기관 ${suggestionOrg.orgName}(${suggestionOrg.orgCode})이 이미 존재합니다.")
+            }
+        }
+
+
+        return suggestionOrgMongoRepository.saveAll(suggestionOrgs)
     }
 
     fun getRecordsByServiceType(serviceType: String): List<SuggestionOrg> =
@@ -28,4 +44,5 @@ class SuggestionOrgsService(private val suggestionOrgMongoRepository: Suggestion
 
 }
 
-
+// Custom exception
+class DuplicateSuggestionOrgException(message: String) : RuntimeException(message)

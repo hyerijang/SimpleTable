@@ -14,5 +14,8 @@ interface SuggestionOrgMongoRepository : MongoRepository<SuggestionOrg, String>,
     fun findAllByDisplayOrderIsNotNull(): List<SuggestionOrg>
     fun findAllByDisplayOrderIsNull(): List<SuggestionOrg>
 
+
+
+    fun findByOrgCodeAndSrcServiceType(orgCode: String?, srcServiceType: String?): List<SuggestionOrg>
 }
 

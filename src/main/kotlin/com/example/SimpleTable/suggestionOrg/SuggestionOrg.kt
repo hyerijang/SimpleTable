@@ -7,6 +7,8 @@ import java.time.LocalDateTime
 @Document(collection = "suggestionOrg")
 data class SuggestionOrg(
     @Id val id: String? = null,
+    val orgName : String?,
+    val orgCode : String?,
     val srcServiceType: String?,
     val createdAt: LocalDateTime? = LocalDateTime.now(),
     val updatedAt: LocalDateTime? = LocalDateTime.now(),
