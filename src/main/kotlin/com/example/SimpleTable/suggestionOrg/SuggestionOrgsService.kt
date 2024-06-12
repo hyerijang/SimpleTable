@@ -20,7 +20,12 @@ class SuggestionOrgsService(private val suggestionOrgMongoRepository: Suggestion
                 suggestionOrg.orgCode, suggestionOrg.srcServiceType
             )
             if (duplicates.isNotEmpty()) {
-                throw DuplicateSuggestionOrgException("서비스 유형이 ${suggestionOrg.srcServiceType}인 기관 ${suggestionOrg.orgName}(${suggestionOrg.orgCode})이 이미 존재합니다.")
+                throw DuplicateSuggestionOrgException(
+                    ErrorMessages.DUPLICATE_SUGGESTION_ORG.format(
+                    suggestionOrg.srcServiceType,
+                    suggestionOrg.orgName,
+                    suggestionOrg.orgCode
+                ))
             }
         }
 
@@ -46,3 +51,7 @@ class SuggestionOrgsService(private val suggestionOrgMongoRepository: Suggestion
 
 // Custom exception
 class DuplicateSuggestionOrgException(message: String) : RuntimeException(message)
+
+object ErrorMessages {
+    const val DUPLICATE_SUGGESTION_ORG = "서비스 유형이 %s인 기관 %s(%s)이 이미 존재합니다."
+}
